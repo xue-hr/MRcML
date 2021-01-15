@@ -1,15 +1,22 @@
 Package: MRcML
-Title: What the Package Does (One Line, Title Case)
+Title: Mendelian randomization method with constrained maximum likelihood.
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+    c(person(given = "Haoran",
+             family = "Xue",
+             role = c("aut", "cre"),
+             email = "xuexx268@umn.edu"),
+      person(given = "Xiaotong",
+             family = "Shen",
+             role = c("aut")
+             ),
+      person(given = "Wei",
+             family = "Pan",
+             role = c("aut")
+             )
+             )
+Description: Perform MRcML method.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
