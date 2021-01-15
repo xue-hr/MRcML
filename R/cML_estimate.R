@@ -1,8 +1,27 @@
-estmate_theta_bg_mu <- function(b_exp,b_out,
-                                se_exp,se_out,
-                                K,initial_theta = 0,
-                                initial_mu = rep(0,length(b_exp)),
-                                maxit = 100)
+#' Estimate with Regular Likelihood
+#'
+#' Estimate theta, b vector, r vector with constrained maximum likelihood.
+#'
+#' @param b_exp Vector of estimated effects for exposure.
+#' @param b_out Vector or estimated effects for outcome.
+#' @param se_exp Vector of standard errors for exposure.
+#' @param se_out Vector of standard errors for outcome.
+#' @param K Constraint parameter, number of invalid IVs.
+#' @param initial_theta Starting point for theta.
+#' @param initial_mu Starting point for mu.
+#' @param maxit Maximum number of iteration.
+#'
+#' @return A list contains: theta is the estimate causal effect,
+#' b_vec is the estimated vector of b,
+#' r_vec is the estimated vector of r.
+#' @export
+#'
+#' @examples
+cML_estimate <- function(b_exp,b_out,
+                         se_exp,se_out,
+                         K,initial_theta = 0,
+                         initial_mu = rep(0,length(b_exp)),
+                         maxit = 100)
 {
   p = length(b_exp)
   ### initialize
@@ -49,7 +68,7 @@ estmate_theta_bg_mu <- function(b_exp,b_out,
   }
 
   return(list(theta = theta,
-              mu_vec = mu_vec,
-              v_bg = v_bg))
+              b_vec = mu_vec,
+              r_vec = v_bg))
 
 }
