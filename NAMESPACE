@@ -2,3 +2,4 @@
 
 export(cML_SdTheta)
 export(cML_estimate)
+export(mr_cML)
