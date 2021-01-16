@@ -135,13 +135,13 @@ mr_cML <- function(b_exp,b_out,
   pval_BIC_select = pnorm(-abs(BIC_select_theta/BIC_select_se))*2
 
   ### return
-  return(list(AIC_theta = AIC_theta,
-              AIC_se = AIC_se,
+  return(list(AIC_theta = AIC_select_theta,
+              AIC_se = AIC_select_se,
               AIC_p = pval_AIC_select,
               AIC_K = AIC_select_K,
               AIC_invalid = AIC_select_invalid,
-              BIC_theta = BIC_theta,
-              BIC_se = BIC_se,
+              BIC_theta = BIC_select_theta,
+              BIC_se = BIC_select_se,
               BIC_p = pval_BIC_select,
               BIC_K = BIC_select_K,
               BIC_invalid = BIC_select_invalid,
