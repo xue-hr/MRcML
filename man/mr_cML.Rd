@@ -2,7 +2,7 @@
 % Please edit documentation in R/mr_cML.R
 \name{mr_cML}
 \alias{mr_cML}
-\title{Title}
+\title{Mendelian randomization with cML method}
 \usage{
 mr_cML(
   b_exp,
@@ -15,11 +15,30 @@ mr_cML(
 )
 }
 \arguments{
-\item{random_start}{}
+\item{b_exp}{Vector of estimated effects for exposure.}
+
+\item{b_out}{Vector or estimated effects for outcome.}
+
+\item{se_exp}{Vector of standard errors for exposure.}
+
+\item{se_out}{Vector of standard errors for outcome.}
+
+\item{n}{Sample size.}
+
+\item{K_vec}{Sets of candidate K's, the constraint parameter representing number of invalid IVs.}
+
+\item{random_start}{Number of random start points, default is 0.}
 }
 \value{
-
+A list contains full results of cML methods.
+AIC_K: K with minimum AIC;
+AIC_theta, AIC_se, AIC_p: Estimate of theta, its standard error and p-value from AIC selected model;
+AIC_invalid: Indices of invalid IVs from AIC selected model.
+Similarly for BIC_K, BIC_theta, BIC_se, BIC_p, BIC_invalid.
+MA_AIC_theta, MA_AIC_se, MA_AIC_p: Estimate of theta, its standard error and p-value from model averaging with AIC-based weights.
+Similarly for MA_BIC_theta, MA_BIC_se, MA_BIC_p.
 }
 \description{
-Title
+Main function for MR cML methods using random start points. Always use 0 as a
+start point, plus random_start number of random start points.
 }

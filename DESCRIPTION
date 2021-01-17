@@ -25,3 +25,5 @@ Author: Haoran Xue [aut, cre],
   	Xiaotong Shen [aut],
   	Wei Pan [aut]
 Maintainer: Haoran Xue <xuexx268@umn.edu>
+Depends: 
+    R (>= 2.10)

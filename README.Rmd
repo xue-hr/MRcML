@@ -18,17 +18,18 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of MRcML is to ...
+Mendelian randomization with constraind maximum likelihood (cML) methods.
 
 ## Installation
 
-You can install the released version of MRcML from [CRAN](https://CRAN.R-project.org) with:
+<!-- You can install the released version of MRcML from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("MRcML")
 ```
-
-And the development version from [GitHub](https://github.com/) with:
+-->
+ 
+Install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -36,20 +37,67 @@ devtools::install_github("xue-hr/MRcML")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Here is an example which shows how to apply MRcML methods to infer the causal effect from **Fast Glucose (FG)** to **Type-2 Diabetes (T2D)**.
 
 ```{r example}
 library(MRcML)
-## basic example code
+summary(T2D_FG)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+Example data `T2D_FG` is a list which contains estimated effects sizes and standard errors of 17 SNPs on T2D and FG. Now we perfrom the main function with sample size of T2D which is 69033, and using 100 random start points.
 
-```{r cars}
-summary(cars)
+```{r,  warning=FALSE}
+set.seed(1)
+cML_result = mr_cML(T2D_FG$b_exp,
+                    T2D_FG$b_out,
+                    T2D_FG$se_exp,
+                    T2D_FG$se_out,
+                    n = 69033,
+                    random_start = 100)
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
+Now lets take a look at the results:
+
+```{r}
+cML_result
+```
+
+BIC selected model gives us indices of invalid IVs: 8, 12, 13, 15, 17. Now lets draw the scatter plot, invalid IVs are marked with blue:
+
+```{r, echo = FALSE}
+library(ggplot2)
+plot_data = data.frame(b_exp = T2D_FG$b_exp,b_out = T2D_FG$b_out,
+                           se_exp = T2D_FG$se_exp,se_out = T2D_FG$se_out)
+    invalid_ind = as.factor(as.numeric(is.element(1:17,c(8, 12, 13, 15, 17))))
+    plot_data = cbind(plot_data,invalid_ind = invalid_ind)
+    
+    fp2 = 
+      ggplot(data = plot_data,aes(x = b_exp,y = b_out)) +
+      geom_point(aes(col = invalid_ind)) + 
+      geom_errorbar(aes(ymin = b_out-se_out,ymax = b_out+se_out,
+                        col = invalid_ind),width=0) + 
+      geom_errorbarh(aes(xmin = b_exp-se_exp, xmax = b_exp+se_exp,
+                         col = invalid_ind),height=0) + 
+      scale_color_manual(values = c("grey","blue")) + 
+      theme(legend.position = "none") + 
+      #geom_abline(intercept = 0,
+      #            slope = c(TLP_result[i,c(1,BIC_min_ind)]),
+      #            col = c("black","red"),
+      #            linetype=c("dashed","solid"),
+      #            size = c(1,1)
+      #) + 
+      geom_hline(yintercept = 0, linetype="solid", 
+                 color = "black", size=0.5) +
+      geom_vline(xintercept = 0, linetype="solid", 
+                 color = "black", size=0.5) +
+      labs(x = "Effect Size of FG",
+           y = "Effect Size of T2D")
+    
+    fp2
+
+```
+
+<!-- You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
 
 You can also embed plots, for example:
 
@@ -57,4 +105,4 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
+In that case, don't forget to commit and push the resulting figure files, so they display on GitHub! -->

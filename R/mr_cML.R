@@ -1,14 +1,23 @@
-#' Title
+#' Mendelian randomization with cML method
 #'
-#' @param b_exp
-#' @param b_out
-#' @param se_exp
-#' @param se_out
-#' @param n
-#' @param K_vec
-#' @param random_start
+#' Main function for MR cML methods using random start points. Always use 0 as a
+#' start point, plus random_start number of random start points.
 #'
-#' @return
+#' @param b_exp Vector of estimated effects for exposure.
+#' @param b_out Vector or estimated effects for outcome.
+#' @param se_exp Vector of standard errors for exposure.
+#' @param se_out Vector of standard errors for outcome.
+#' @param n Sample size.
+#' @param K_vec Sets of candidate K's, the constraint parameter representing number of invalid IVs.
+#' @param random_start Number of random start points, default is 0.
+#'
+#' @return A list contains full results of cML methods.
+#' AIC_K: K with minimum AIC;
+#' AIC_theta, AIC_se, AIC_p: Estimate of theta, its standard error and p-value from AIC selected model;
+#' AIC_invalid: Indices of invalid IVs from AIC selected model.
+#' Similarly for BIC_K, BIC_theta, BIC_se, BIC_p, BIC_invalid.
+#' MA_AIC_theta, MA_AIC_se, MA_AIC_p: Estimate of theta, its standard error and p-value from model averaging with AIC-based weights.
+#' Similarly for MA_BIC_theta, MA_BIC_se, MA_BIC_p.
 #' @export
 #'
 #' @examples
