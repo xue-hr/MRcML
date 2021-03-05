@@ -11,7 +11,9 @@ mr_cML(
   se_out,
   n,
   K_vec = 0:(length(b_exp) - 2),
-  random_start = 0
+  random_start = 0,
+  maxit = 100,
+  random_seed = 0
 )
 }
 \arguments{
@@ -28,6 +30,12 @@ mr_cML(
 \item{K_vec}{Sets of candidate K's, the constraint parameter representing number of invalid IVs.}
 
 \item{random_start}{Number of random start points, default is 0.}
+
+\item{maxit}{Maximum number of iterations for each optimization.}
+
+\item{random_seed}{Random seed, an integer. Default is
+0, which does not set random seed; user could specify a positive integer
+as random seed to get replicable results.}
 }
 \value{
 A list contains full results of cML methods.

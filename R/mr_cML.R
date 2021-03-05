@@ -10,6 +10,10 @@
 #' @param n Sample size.
 #' @param K_vec Sets of candidate K's, the constraint parameter representing number of invalid IVs.
 #' @param random_start Number of random start points, default is 0.
+#' @param maxit Maximum number of iterations for each optimization.
+#' @param random_seed Random seed, an integer. Default is
+#' 0, which does not set random seed; user could specify a positive integer
+#' as random seed to get replicable results.
 #'
 #' @return A list contains full results of cML methods.
 #' AIC_K: K with minimum AIC;
@@ -25,9 +29,15 @@ mr_cML <- function(b_exp,b_out,
                    se_exp,se_out,
                    n,
                    K_vec = 0:(length(b_exp)-2),
-                   random_start = 0
+                   random_start = 0,
+                   maxit = 100,
+                   random_seed = 0
                    )
 {
+  if(random_seed)
+  {
+    set.seed(random_seed)
+  }
   p = length(b_exp)
 
   min_theta_range = min(b_out/b_exp)
@@ -62,7 +72,7 @@ mr_cML <- function(b_exp,b_out,
                      se_exp,se_out,
                      K = K_value,initial_theta = initial_theta,
                      initial_mu = initial_mu,
-                     maxit = 100)
+                     maxit = maxit)
 
       Neg_l =
         sum( (b_exp - MLE_result$b_vec)^2 / (2*se_exp^2) ) +
