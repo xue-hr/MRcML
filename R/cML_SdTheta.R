@@ -32,11 +32,11 @@ cML_SdTheta <- function(b_exp,b_out,
 
   if(VarTheta<=0)
   {
-    warning("Variance of theta is not positive,
-            due to not converging to a minimum so Fisher Information
-            Matrix is not positive definite. Try increasing
-            number of iteration (maxit) in cML_estimate,
-            or try a different start point.")
+    warning(paste("Variance of theta is not positive,",
+            "due to not converging to a minimum so Fisher Information",
+            "Matrix is not positive definite. Try increasing",
+            "number of iteration (maxit) in cML_estimate,",
+            "or try a different start point."))
     return(NaN)
   } else {
     return(sqrt(VarTheta))
