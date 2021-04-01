@@ -120,7 +120,7 @@ mr_cML_DP <- function(b_exp,b_out,
                      na.rm = TRUE)
   MA_BIC_DP_p = pnorm(-abs(MA_BIC_DP_theta/MA_BIC_DP_se))*2
 
-  ### cML-BIC-DP
+  # cML-BIC-DP
   BIC_vec = log(n) * K_vec + 2 * l_pt_v
   BIC_vec = BIC_vec - min(BIC_vec)
   min_ind = which.min(BIC_vec)
@@ -128,7 +128,7 @@ mr_cML_DP <- function(b_exp,b_out,
   BIC_DP_se = sd_pt_v[min_ind]
   BIC_DP_p = pnorm(-abs(BIC_DP_theta/BIC_DP_se))*2
 
-  ### GOF 1
+  # GOF 1
   BIC_vec = log(n) * K_vec + 2 * l_v
   BIC_vec = BIC_vec - min(BIC_vec)
   min_ind = which.min(BIC_vec)
@@ -142,9 +142,9 @@ mr_cML_DP <- function(b_exp,b_out,
                 more_var)
   Tstat =
     (origin_sd_v^2 - pt_sd_v^2)/(sd_x)
-  pz1 = pnorm(-abs(Tstat))*2
+  GOF1_p = pnorm(-abs(Tstat))*2
 
-  ### GOF 2
+  # GOF 2
   BIC_vec = log(n) * K_vec + 2 * l_v
   BIC_vec = BIC_vec - min(BIC_vec)
   min_ind = which.min(BIC_vec)
@@ -155,7 +155,7 @@ mr_cML_DP <- function(b_exp,b_out,
   Tstat =
     (origin_sd_v^2 - pt_sd_v^2)/(sqrt(2/(numer_perturb-1)*pt_sd_v^4 +
                                         more_var))
-  pz2 = pnorm(-abs(Tstat))*2
+  GOF2_p = pnorm(-abs(Tstat))*2
 
   return(list(MA_BIC_theta = MA_BIC_theta,
               MA_BIC_se = MA_BIC_se,
@@ -170,7 +170,7 @@ mr_cML_DP <- function(b_exp,b_out,
               BIC_DP_theta = BIC_DP_theta,
               BIC_DP_se = BIC_DP_se,
               BIC_DP_p = BIC_DP_p,
-              GOF1 = pz1,
-              GOF2 = pz2
+              GOF1_p = GOF1_p,
+              GOF2_p = GOF2_p
               ))
 }

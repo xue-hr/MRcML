@@ -70,7 +70,16 @@ cML_estimate_random <- function(b_exp, b_out,
                                     as.numeric(MLE_result$r_vec))
 
   }
-
+  if(sum(is.na(sd_v_RandomCandidate)))
+  {
+    warning(paste("May not converge to minimums with some given",
+                  "start points and maximum number of iteration,",
+                  "lead to Fisher Information matrices not positive definite.",
+                  "Could try increasing number of iterations (maxit)",
+                  "or try different start points. Note: If",
+                  "multiple random start points are used,",
+                  "this warning does not likely affect result."))
+  }
   min_neg_l = which.min(l_v_RandomCandidate)
 
   theta_est = theta_v_RandomCandidate[min_neg_l]
