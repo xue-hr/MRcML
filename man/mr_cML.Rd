@@ -47,6 +47,7 @@ for MA_AIC_theta, MA_AIC_se, MA_AIC_p from cML-MA-AIC;
 for AIC_DP_theta, AIC_DP_se, AIC_DP_p from cML-AIC.
 BIC_invalid is the set of invalid IVs selected by cML-BIC,
 AIC_invalid is the set of invalid IVs selected by cML-AIC.
+BIC_vec is the BIC vector.
 }
 \description{
 This is the main function of MRcML method, without data perturbation.

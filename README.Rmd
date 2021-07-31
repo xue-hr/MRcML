@@ -99,6 +99,7 @@ plot_data = data.frame(b_exp = T2D_FG$b_exp,b_out = T2D_FG$b_out,
 
 Now let us perform cML with data perturbation. The default number of perturbations is 200, and we use 10 random start points. In real application, we recommend use more random start points to get reliable results even it takes more time, like 10 or even 100; in simulations the number of random start points could be set to 0 (i.e. do not use random start) to speed up.
 
+
 ```{r, warning=FALSE}
 cML_result_DP = mr_cML_DP(T2D_FG$b_exp,
                           T2D_FG$b_out,

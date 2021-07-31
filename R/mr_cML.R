@@ -23,6 +23,7 @@
 #' for AIC_DP_theta, AIC_DP_se, AIC_DP_p from cML-AIC.
 #' BIC_invalid is the set of invalid IVs selected by cML-BIC,
 #' AIC_invalid is the set of invalid IVs selected by cML-AIC.
+#' BIC_vec is the BIC vector.
 #' @export
 #'
 #' @examples
@@ -109,6 +110,7 @@ mr_cML <- function(b_exp,b_out,
               BIC_se = BIC_se,
               BIC_p = BIC_p,
               BIC_invalid = BIC_invalid,
+              BIC_vec = log(n) * K_vec + 2 * l_v,
               MA_AIC_theta = MA_AIC_theta,
               MA_AIC_se = MA_AIC_se,
               MA_AIC_p = MA_AIC_p,
