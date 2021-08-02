@@ -8,9 +8,10 @@
 <!-- badges: end -->
 
 R package for Mendelian randomization with constraind maximum likelihood
-(MRcML) methods. Please see draft of the paper and supplementary in the
-folder **Draft**
-above.
+(MRcML) methods. Here is the reference: [**Constrained maximum
+likelihood-based Mendelian randomization robust to both correlated and
+uncorrelated pleiotropic
+effects**](https://www.cell.com/ajhg/pdfExtended/S0002-9297\(21\)00219-6).
 
 ## Installation
 
