@@ -14,8 +14,8 @@ pleiotropic
 effects**](https://www.cell.com/ajhg/pdfExtended/S0002-9297(21)00219-6).
 Here is the reference for the extension of MRcML method with overlapping
 samples: [**Combining Mendelian randomization and network deconvolution
-for inference of causal networks with GWAS summary data
-**](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1010762).
+for inference of causal networks with GWAS summary
+data**](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1010762).
 
 ## Installation
 
@@ -56,7 +56,7 @@ results are replicable. First we use the function `mr_cML()`, which is
 for the two independent sample case. Then we apply the function
 `mr_cML_Overlap()`, which is for the overlapping sample case; for
 illustration purpose, here we assume the correlations between GWAS
-summary data being 0.1, `rho = 0.1`.
+summary data being 0.1, i.e. setting `rho = 0.1`.
 
 ``` r
 ### mr_cML() for two independent samples
@@ -142,6 +142,32 @@ cML_result
 #> 
 #> $AIC_invalid
 #> [1]  1  5  8 12 13 14 15 17
+cML_result_Overlap
+#> $MA_BIC_theta
+#> [1] 2.104823
+#> 
+#> $MA_BIC_se
+#> [1] 0.2291103
+#> 
+#> $MA_BIC_p
+#> [1] 4.041771e-20
+#> 
+#> $BIC_theta
+#> [1] 2.042903
+#> 
+#> $BIC_se
+#> [1] 0.2002188
+#> 
+#> $BIC_p
+#> [1] 1.915521e-24
+#> 
+#> $BIC_invalid
+#> [1]  5  8 12 13 15 17
+#> 
+#> $BIC_vec
+#>  [1] 338.05597 119.55712  93.38677  86.95164  83.59678  79.99495  79.81302
+#>  [8]  86.44247  93.67529 102.33370 111.06057 120.39637 130.13024 140.18519
+#> [15] 150.53333 161.10706
 ```
 
 BIC selected model gives us indices of invalid IVs: 8, 12, 13, 15, 17.
@@ -164,7 +190,7 @@ start) to speed up. First we use the function `mr_cML_DP()`, which is
 for the two independent sample case. Then we apply the function
 `mr_cML_DP_Overlap()`, which is for the overlapping sample case; again
 for illustration purpose, here we assume the correlations between GWAS
-summary data being 0.1, `rho = 0.1`.
+summary data being 0.1, i.e. setting `rho = 0.1`.
 
 ``` r
 ### mr_cML_DP() for two independent samples
@@ -239,6 +265,45 @@ cML_result_DP
 #> 
 #> $GOF2_p
 #> [1] 2.204418e-16
+cML_result_DP_Overlap
+#> $MA_BIC_theta
+#> [1] 2.104824
+#> 
+#> $MA_BIC_se
+#> [1] 0.2291098
+#> 
+#> $MA_BIC_p
+#> [1] 4.040795e-20
+#> 
+#> $BIC_theta
+#> [1] 2.042903
+#> 
+#> $BIC_se
+#> [1] 0.2002188
+#> 
+#> $BIC_p
+#> [1] 1.91552e-24
+#> 
+#> $BIC_invalid
+#> [1]  5  8 12 13 15 17
+#> 
+#> $MA_BIC_DP_theta
+#> [1] 1.828106
+#> 
+#> $MA_BIC_DP_se
+#> [1] 0.44015
+#> 
+#> $MA_BIC_DP_p
+#> [1] 3.276133e-05
+#> 
+#> $BIC_DP_theta
+#> [1] 1.816682
+#> 
+#> $BIC_DP_se
+#> [1] 0.520952
+#> 
+#> $BIC_DP_p
+#> [1] 0.0004880407
 ```
 
 <!-- You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
